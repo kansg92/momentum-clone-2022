@@ -1,12 +1,15 @@
-const h1 = document.querySelector("div.hello:first-child h1");
+/*
+const loginForm = document.querySelector("#login-form");
+const loginInput = loginForm.querySelector("input");
+const loginButton = loginForm.querySelector("button");
+아래과 같은 코드이다.
+*/
+const loginInput = document.querySelector("#login-form input");
+const loginButton = document.querySelector("#login-form button");
 
-function handleTitleClick() {
-    const clickedClass ="clicked"
-    if(h1.classList.contains(clickedClass) ){
-        h1.classList.remove(clickedClass);
-    }else {
-        h1.classList.add(clickedClass);
-    }  ////h1.classList.toggle("clicked") 과같다! 저 3줄의 코드가!
+function onLoginBtnClick(){
+    console.log(loginInput.value);
+    console.log("click!!");
 }
 
-h1.addEventListener("click", handleTitleClick);
+loginButton.addEventListener("click", onLoginBtnClick);

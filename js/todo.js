@@ -2,10 +2,12 @@ const toDoForm = document.getElementById("todo-form");
 const toDoInput = toDoForm.querySelector("input")
 const toDoList = document.querySelector("#todo-list");
 
-const toDos = [];
+const TODOS_KEY = "todos"
+
+let toDos = [];
 
 function saveToDos(){
-    localStorage.setItem("todos", JSON.stringify(toDos)); //JSON.stringify() => 값을 모두 String으로 바꿔주는 함수
+    localStorage.setItem(TODOS_KEY, JSON.stringify(toDos)); //JSON.stringify() => 값을 모두 String으로 바꿔주는 함수
 }
 
 function deleteToDo(event){
@@ -25,14 +27,29 @@ function paintToDo(newToDo){
     toDoList.appendChild(li);
 }
 
-
 function handelToDoSubmit(event){
     event.preventDefault();    
     const newToDo = toDoInput.value;
-    toDoInput.value ="";   
+    toDoInput.value ="a";   
     toDos.push(newToDo);
     paintToDo(newToDo);
     saveToDos();
 };
 
 toDoForm.addEventListener("submit", handelToDoSubmit);
+
+// function sayHello(item){
+//     console.log("This is turn of", item)
+// }
+
+const savedToDos = localStorage.getItem(TODOS_KEY);
+
+if(saveToDos !== null ){
+    const parseToDos = JSON.parse(savedToDos);
+    console.log(saveToDos);
+    if(parseToDos !== null ){
+    toDos = parseToDos;
+    parseToDos.forEach(paintToDo); 
+    }    
+};
+
